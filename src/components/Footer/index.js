@@ -1,177 +1,38 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './style.scss'; 
 
 export default class Footer extends React.Component{
 
     render() { 
         
-        return <footer className="bg-dark text-center text-white">
- 
-        <div className="container p-4">
-  
+        return <footer className="main-footer text-center ">
+        <div className="container p-4">  
           <section className="mb-4">
-       
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-facebook-f"></i
-            ></a>
-      
-      
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-twitter"></i
-            ></a>
-      
-      
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-google"></i
-            ></a>
-      
-     
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-instagram"></i
-            ></a>
-      
-       
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-linkedin-in"></i
-            ></a>
-      
-      
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-github"></i
-            ></a>
-          </section>
-    
-          <section className="">
-            <form action="">
-       
-              <div className="row d-flex justify-content-center">
-      
-                <div className="col-auto">
-                  <p className="pt-2">
-                    <strong>Sign up for our newsletter</strong>
-                  </p>
-                </div>
-         
-                <div className="col-md-5 col-12">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous" />
+            <a className="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/officialdikochan/" role="button" rell="noreferrer" target="_blank"
+              ><i className="fab fa-facebook-f">
+            </i></a>
   
-                  <div className="form-outline form-white mb-4">
-                    <input type="email" id="form5Example21" className="form-control" />
-                    <label className="form-label" for="form5Example21">Email address</label>
-                  </div>
-                </div>
-         
-                <div className="col-auto">
-          
-                  <button type="submit" className="btn btn-outline-light mb-4">
-                    Subscribe
-                  </button>
-                </div>
-           
-              </div>
-    
-            </form>
+            <a className="btn btn-outline-light btn-floating m-1" href="https://twitter.com/Diko__chan" role="button" rell="noreferrer" target="_blank"
+              ><i className="fab fa-twitter">
+            </i></a>
+ 
+            <a className="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/dikochanart" role="button" rell="noreferrer" target="_blank"
+              ><i className="fab fa-instagram">
+            </i></a> 
+
+            <a className="btn btn-outline-light btn-floating m-1" href="https://www.deviantart.com/diko-chan" role="button" rell="noreferrer" target="_blank"
+              ><i class="fab fa-deviantart">
+            </i></a>    
           </section>
-     
           <section className="mb-4">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-              repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-              eum harum corrupti dicta, aliquam sequi voluptate quas.
+              I really appreciate your visit here, I hope you are doing fine.<br/>
+              Here are some links for my social pages~
             </p>
           </section>
-      
-          <section className="">
-         
-            <div className="row">
-         
-              <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 className="text-uppercase">Links</h5>
-      
-                <ul className="list-unstyled mb-0">
-                  <li>
-                    <a href="#!" className="text-white">Link 1</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 2</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 3</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 4</a>
-                  </li>
-                </ul>
-              </div>
-         
-              <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 className="text-uppercase">Links</h5>
-      
-                <ul className="list-unstyled mb-0">
-                  <li>
-                    <a href="#!" className="text-white">Link 1</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 2</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 3</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 4</a>
-                  </li>
-                </ul>
-              </div>
-          
-              <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 className="text-uppercase">Links</h5>
-      
-                <ul className="list-unstyled mb-0">
-                  <li>
-                    <a href="#!" className="text-white">Link 1</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 2</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 3</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 4</a>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 className="text-uppercase">Links</h5>
-      
-                <ul className="list-unstyled mb-0">
-                  <li>
-                    <a href="#!" className="text-white">Link 1</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 2</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 3</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 4</a>
-                  </li>
-                </ul>
-              </div>
- 
-            </div>
- 
-          </section>
-      
         </div>
-     
-         {/* <div className="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          © 2022 Copyright: Diko-chan
-          <a className="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-        </div>  */}
-  
       </footer>
     }
 }

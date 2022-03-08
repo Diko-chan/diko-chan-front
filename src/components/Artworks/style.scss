@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+  }
+
+.row-artwork {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding-left: 7%;
+    padding-right: 7%;
+  }
+
+  @media screen and (max-width: 800px) {
+    .column-artwork {
+      -ms-flex: 50%;
+      flex: 50%;
+      max-width: 50%;
+    }
+  }
+  
+  .column-artwork img {
+    padding: 2px;
+    vertical-align: middle;
+    width: 100%;
+  }
