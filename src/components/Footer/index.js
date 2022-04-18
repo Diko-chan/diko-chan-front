@@ -9,7 +9,7 @@ export default class Footer extends React.Component{
         return <footer className="main-footer text-center ">
         <div className="container p-4">  
           <section className="mb-4">
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous" />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossOrigin="anonymous" />
             <a className="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/officialdikochan/" role="button" rell="noreferrer" target="_blank"
               ><i className="fab fa-facebook-f">
             </i></a>
@@ -23,7 +23,7 @@ export default class Footer extends React.Component{
             </i></a> 
 
             <a className="btn btn-outline-light btn-floating m-1" href="https://www.deviantart.com/diko-chan" role="button" rell="noreferrer" target="_blank"
-              ><i class="fab fa-deviantart">
+              ><i className="fab fa-deviantart">
             </i></a>    
           </section>
           <section className="mb-4">

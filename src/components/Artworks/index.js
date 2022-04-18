@@ -40,36 +40,36 @@ export default class Arworks extends React.Component {
                     <div className="">
                         <div className="row-artwork">
                             <div className="column-artwork col-sm-3">
-                            <img src={silvervalefanart} class="card-img-top" alt="Silvervale" />
-                            <img src={baizhu} class="card-img-top" alt="baizhu" />
-                            <img src={ayato} class="card-img-top" alt="ayato" />
-                            <img src={tartar} class="card-img-top" alt="tartar" />
-                            <img src={Itto} class="card-img-top" alt="Itto" />
-                            <img src={kokomichibi} class="card-img-top" alt="kokomichibi" />
+                            <img src={silvervalefanart} className="card-img-top" alt="Silvervale" />
+                            <img src={baizhu} className="card-img-top" alt="baizhu" />
+                            <img src={ayato} className="card-img-top" alt="ayato" />
+                            <img src={tartar} className="card-img-top" alt="tartar" />
+                            <img src={Itto} className="card-img-top" alt="Itto" />
+                            <img src={kokomichibi} className="card-img-top" alt="kokomichibi" />
                             </div>
                             <div className="column-artwork col-sm-3">
-                            <img src={winterme4} class="card-img-top" alt="winterme4" />
-                            <img src={shenhedone} class="card-img-top" alt="shenhedone" />
-                            <img src={albedo} class="card-img-top" alt="albedo" />
-                            <img src={covenahri} class="card-img-top" alt="covenahri" />
-                            <img src={kokominormo} class="card-img-top" alt="kokominormo" />
-                            <img src={kujosarah} class="card-img-top" alt="kujosarah" />
+                            <img src={winterme4} className="card-img-top" alt="winterme4" />
+                            <img src={shenhedone} className="card-img-top" alt="shenhedone" />
+                            <img src={albedo} className="card-img-top" alt="albedo" />
+                            <img src={covenahri} className="card-img-top" alt="covenahri" />
+                            <img src={kokominormo} className="card-img-top" alt="kokominormo" />
+                            <img src={kujosarah} className="card-img-top" alt="kujosarah" />
                             </div>
                             <div className="column-artwork col-sm-3">
-                            <img src={yaeyae} class="card-img-top" alt="yaeyae" />
-                            <img src={bunny} class="card-img-top" alt="bunny" />
-                            <img src={chibivex} class="card-img-top" alt="chibivex" />
-                            <img src={commff14} class="card-img-top" alt="commff14" />
-                            <img src={lilu2} class="card-img-top" alt="lilu2" />
-                            <img src={maidthoma} class="card-img-top" alt="maidthoma" />
+                            <img src={yaeyae} className="card-img-top" alt="yaeyae" />
+                            <img src={bunny} className="card-img-top" alt="bunny" />
+                            <img src={chibivex} className="card-img-top" alt="chibivex" />
+                            <img src={commff14} className="card-img-top" alt="commff14" />
+                            <img src={lilu2} className="card-img-top" alt="lilu2" />
+                            <img src={maidthoma} className="card-img-top" alt="maidthoma" />
                             </div>
                             <div className="column-artwork col-sm-3">
-                            <img src={adultgoroudone} class="card-img-top" alt="adultgoroudone" />
-                            <img src={cutiesoraka} class="card-img-top" alt="cutiesoraka" />
-                            <img src={dilucat} class="card-img-top" alt="dilucat" />
-                            <img src={Ganyuanyu} class="card-img-top" alt="Ganyuanyu" />
-                            <img src={nami} class="card-img-top" alt="nami" />
-                            <img src={sayuchibi} class="card-img-top" alt="sayuchibi" />
+                            <img src={adultgoroudone} className="card-img-top" alt="adultgoroudone" />
+                            <img src={cutiesoraka} className="card-img-top" alt="cutiesoraka" />
+                            <img src={dilucat} className="card-img-top" alt="dilucat" />
+                            <img src={Ganyuanyu} className="card-img-top" alt="Ganyuanyu" />
+                            <img src={nami} className="card-img-top" alt="nami" />
+                            <img src={sayuchibi} className="card-img-top" alt="sayuchibi" />
                             </div>
                         </div>
                     </div>

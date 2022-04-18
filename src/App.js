@@ -6,58 +6,69 @@ import Footer from './components/Footer';
 import Welcome from './components/Welcome';
 import Artworks from './components/Artworks'
 import Commission from './components/Commission';
+import Commissiontables from './components/CommissionTables';
+import Commission_notloggedin from './components/CommissionNotLoggedin';
 import Contactme from './components/Contactme';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Switch } from 'react-router-dom';
+import LoginRequired from './api/LoginRequired';
 
 
 
 
 class App extends React.Component {
+
+  
   render() {
     return (
       <div className="App">
-        <Routes>
-          <Route path='/' element={
-            <>
-            <Navbar></Navbar>
-            <Cards></Cards>
-            <Welcome></Welcome>
-            <Footer></Footer>
-            </>
-           } />
-
-          <Route>
-            <Route path='/artworks' element={
+        
+          <Routes>
+            <Route path='/' element={
               <>
-              <Navbar></Navbar>
-              <Artworks></Artworks>
-              <Footer></Footer>
+              <Navbar />
+              <Cards />
+              <Welcome />
+              <Footer />
               </>
             } />
-          </Route>
 
-          <Route path='/contactme' element={
-            <>
-            <Navbar></Navbar>
-            <Cards></Cards>
-            <Contactme></Contactme>
-            <Footer></Footer>
-            </>
-           } />
+            <Route>
+              <Route path='/artworks' element={
+                <>
+                <Navbar />
+                <Artworks />
+                <Footer />
+                </>
+              } />
+            </Route>
 
-          <Route path='/commission' element={
-            <>
-            <Navbar></Navbar>
-            <Cards></Cards>
-            <Commission></Commission>
-            <Footer></Footer>
-            </>
-           } />
-        </Routes>      
+            <Route path='/contactme' element={
+              <>
+              <Navbar />
+              <Cards />
+              <Contactme />
+              <Footer />
+              </>
+            } />
+            
+              <Route path='/commission' element={
+                <>
+                <Navbar />
+                <Cards />
+                <LoginRequired>
+                  <Commission />
+                {/* <Commissiontables /> */}
+                </LoginRequired>
+                <Footer />
+                </>
+              } />
+
+          </Routes>
+            
     </div>
     )
   }

@@ -13,16 +13,16 @@ export default class Cards extends React.Component{
 
         return <div className="container card-group">
         <div className="card">
-          <img src={baizhu} class="card-img-top" alt="baizhu" />
+          <img src={baizhu} className="card-img-top" alt="baizhu" />
         </div>
         <div className="card">
-          <img src={ayato} class="card-img-top" alt="ayato" />
+          <img src={ayato} className="card-img-top" alt="ayato" />
         </div>
         <div className="card">
-          <img src={shenhedone} class="card-img-top" alt="shenhedone" />
+          <img src={shenhedone} className="card-img-top" alt="shenhedone" />
         </div>
         <div className="card">
-          <img src={tartar} class="card-img-top" alt="tartar" />
+          <img src={tartar} className="card-img-top" alt="tartar" />
         </div>
       </div>
 

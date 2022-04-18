@@ -9,7 +9,7 @@ import { ApiProvider } from './api/api';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ApiProvider> 
+      <ApiProvider serverAddress="http://127.0.0.1:8000"> 
         <App />
       </ApiProvider> 
     </BrowserRouter>
