@@ -1,5 +1,6 @@
 import React from 'react';
 import Form  from 'react';
+import LoginRequired from '../../api/LoginRequired';
 
 import './style.scss'; 
 
@@ -8,8 +9,21 @@ export default class Commission extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state={};
-    };
+        this.state={
+            commissionError: null,
+            com_name: '',
+            com_age: '',
+            com_gender: '',
+            com_details: '',
+
+
+        };
+    }
+
+    handleComNameChange = (event) => { this.setState({ com_name: event.currentTarget.value }) };
+    handleComAgeChange = (event) => { this.setState({ com_age: event.currentTarget.value }) };
+    handleComGenderChange = (event) => { this.setState({ com_gender: event.currentTarget.value }) };
+    handleComDetailsChange = (event) => { this.setState({ com_details: event.currentTarget.value }) };
 
     render() {
         return <div className="card-group">
@@ -28,6 +42,8 @@ export default class Commission extends React.Component {
                     
                 </div>
             </div>
+            
+            <LoginRequired>
             <div className="card between commission-container">
                 <div className="mb-3 input-group col-auto">
                     <span className="input-group-text" id="addon-wrapping" required>Name</span>
@@ -53,10 +69,10 @@ export default class Commission extends React.Component {
                     <span className="input-group-text" id="addon-wrapping">Details</span>
                         <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" required></textarea>
                 </div>
-                <div className="input-group mb-3">
+                {/* <div className="input-group mb-3">
                     <input type="file" className="form-control" id="inputGroupFile02" required />
                     <label className="input-group-text" htmlFor="inputGroupFile02">Upload</label>
-                </div>
+                </div> */}
                 <div className="form-check">
                     <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required />
                     <label className="form-check-label" htmlFor="invalidCheck">
@@ -70,7 +86,7 @@ export default class Commission extends React.Component {
                     <button className="btn btn-secondary" type="submit" >Submit Commission</button>
                 </div>
             </div>
-            
+            </LoginRequired>
 
         </div>
     }

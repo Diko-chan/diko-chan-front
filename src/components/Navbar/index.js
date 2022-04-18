@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { ApiContext } from "../../api/api";
 import { Link } from 'react-router-dom';
 
-
 import './style.scss';
+
+import Guest from '../../api/Guest';
+import LoginRequired from '../../api/LoginRequired';
 
 
 
@@ -24,38 +26,45 @@ export default class Navbar extends React.Component {
     };
   }
 
+  handleLogout = () => {
+    console.log("token: " + this.context.apiToken);
+    this.context.apiToken = "";
+    alert("kijelentkezés");
+    console.log("token: " + this.context.apiToken);
+  };
+
   handleEmailChange = (event) => { this.setState({ email: event.currentTarget.value }) };
   handleNameChange = (event) => { this.setState({ name: event.currentTarget.value }) };
   handlePasswordChange = (event) => { this.setState({ password: event.currentTarget.value }) };
-  handleConfPasswordChange = (event) => { this.setState({ confpassword: event.currentTarget.value }) };
+  handleConfPasswordChange = (event) => { this.setState({ confPassword: event.currentTarget.value }) };
 
   handleSignup = async () => {
-    const { name ,email, password, confpassword } = this.state;
+    const { name, email, password, confPassword } = this.state;
     if (name.trim() !== '' &&
-        email.trim() !== '' &&
-        password.trim() !== '' &&
-        confpassword.trim() !== ''){
-          if ( password != confpassword){
-            alert("passwords doesn't match")
-            return false;
-          }
-          else{
-            try {
-              await this.context.signup(name, email, password);
-              this.setState({
-                signupError: null,
-                name: '',
-                email: '',
-                password: '',
-                //confpassword: '',
-              })
+      email.trim() !== '' &&
+      password.trim() !== '' &&
+      confPassword.trim() !== '') {
+      if (password != confPassword) {
+        alert("passwords doesn't match")
+        return false;
+      }
+      else {
+        try {
+          await this.context.signup(name, email, password);
+          this.setState({
+            signupError: null,
+            name: '',
+            email: '',
+            password: '',
+          })
 
-            } catch (exception) {
-              this.setState({signupError: exception.message});
-            }
+        } catch (exception) {
+          this.setState({ signupError: exception.message });
         }
-     }
+      }
+    }
   };
+
 
   handleLogin = async () => {
 
@@ -79,9 +88,6 @@ export default class Navbar extends React.Component {
   };
 
   render() {
-
-
-
     return <nav className="navbar navbar-expand-lg navbar-light main-navbar">
       <div className="container-fluid">
         <p className="navbar-brand">DIKO-CHAN</p>
@@ -101,15 +107,27 @@ export default class Navbar extends React.Component {
             </li>
           </ul>
         </div>
-        
-        {/* Sign up, Login buttons */}
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossOrigin="anonymous" />
-        <ul className="nav buttons-navbar-nav navbar-right">
-          <a className="btn btn-outline-light btn-floating m-1" data-bs-toggle="modal" data-bs-target="#signupmodal" role="button">
-            <i className="fas fa-user-plus"></i></a>
-          <a className="btn btn-outline-light btn-floating m-1" data-bs-toggle="modal" data-bs-target="#loginmodal" role="button">
-            <i className="fas fa-sign-in-alt"></i></a>
-        </ul>
+
+
+        <Guest>
+          {/* Sign up, Login buttons */}
+          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossOrigin="anonymous" />
+          <ul className="nav buttons-navbar-nav navbar-right">
+            <a className="btn btn-outline-light btn-floating m-1" data-bs-toggle="modal" data-bs-target="#signupmodal" role="button">
+              <i className="fas fa-user-plus"></i></a>
+            <a className="btn btn-outline-light btn-floating m-1" data-bs-toggle="modal" data-bs-target="#loginmodal" role="button">
+              <i className="fas fa-sign-in-alt"></i></a>
+          </ul>
+        </Guest>
+
+        <LoginRequired>
+          <button className='btn btn-outline-light btn-floating'
+            onClick={this.handleLogout}>
+            <i className="fas fa-sign-in-alt me-2"></i>Logout
+          </button>
+        </LoginRequired>
+
+
 
         {/* Sign up modal */}
         <div className="modal fade" id="signupmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -128,22 +146,23 @@ export default class Navbar extends React.Component {
                   <div className="mb-2">
                     <label htmlFor="signup-email-input" className="form-label">Email address</label>
                     <input type="email" onInput={this.handleEmailChange}
-                     className="form-control" id="signup-email-input" aria-describedby="emailHelp" />
+                      className="form-control" id="signup-email-input" aria-describedby="emailHelp" />
                   </div>
                   <div className="row">
                     <div className="mb-2 col">
                       <label htmlFor="signup-password-input" className="form-label">Password</label>
                       <input type="password" onInput={this.handlePasswordChange}
-                       className="form-control" id="signup-password-input" />
+                        className="form-control" id="signup-password-input" />
                     </div>
                     <div className="mb-2 col">
                       <label htmlFor="signup-confirm-password-input" className="form-label">Confirm Password</label>
-                      <input type="password"onInput={this.handleConfPasswordChange}
-                       className="form-control" id="signup-confirm-password-input" />
+                      <input type="password" onInput={this.handleConfPasswordChange}
+                        className="form-control" id="signup-confirm-password-input" />
                     </div>
                   </div>
                   <button type="submit" onClick={this.handleSignup()} className="btn btn-outline-dark">
                     <i className="fas fa-user-plus"></i> Sign up</button>
+                  {this.state.signupError ? <p>{this.state.signupError}</p> : null}
                 </div>
               </div>
 

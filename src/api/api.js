@@ -33,7 +33,6 @@ export class ApiProvider extends Component {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                     'Authorization': this.state.apiToken ? `Bearer ${this.state.apiToken}` : null,
-                    //'X-CSRFToken': this.state.apiToken,
                 },
                 body: data ? JSON.stringify(data) : null,
             });
@@ -54,7 +53,7 @@ export class ApiProvider extends Component {
         if (!data.message) {
             throw new Error(data.message);
         } else {
-            //window.localStorage.setItem('authToken', data.data.token);
+            window.localStorage.setItem('authToken', data.data.token);
             this.setState({apiToken: data.data.token});
 
             console.log("Sikeres bejelentkezés!");
@@ -63,16 +62,10 @@ export class ApiProvider extends Component {
         }
     }
 
-    /* getUserData = async () => {
-        if (!this.state.apiToken) throw new Error('User is not logged in');
-        const response = await this.fetchApi('user');
-        return response.json();
-    }; */
 
     render() {
         return <ApiContext.Provider value={this.state}>
             {this.props.children}
         </ApiContext.Provider>
     }
-
 }

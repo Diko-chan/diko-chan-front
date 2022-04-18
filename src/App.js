@@ -21,7 +21,7 @@ import LoginRequired from './api/LoginRequired';
 
 class App extends React.Component {
 
-  
+
   render() {
     return (
       <div className="App">
@@ -59,10 +59,10 @@ class App extends React.Component {
                 <>
                 <Navbar />
                 <Cards />
-                <LoginRequired>
+                
                   <Commission />
                 {/* <Commissiontables /> */}
-                </LoginRequired>
+                
                 <Footer />
                 </>
               } />
