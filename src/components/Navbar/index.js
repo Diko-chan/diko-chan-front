@@ -27,10 +27,9 @@ export default class Navbar extends React.Component {
   }
 
   handleLogout = () => {
-    console.log("token: " + this.context.apiToken);
-    this.context.apiToken = "";
-    alert("kijelentkezés");
-    console.log("token: " + this.context.apiToken);
+    this.context.apiToken = null;
+    window.localStorage.clear();
+    this.forceUpdate(); // force update to rerender after context changes due to lack of change detection 
   };
 
   handleEmailChange = (event) => { this.setState({ email: event.currentTarget.value }) };
@@ -80,10 +79,10 @@ export default class Navbar extends React.Component {
           password: '',
           //userData,
         })
+        this.forceUpdate();
       } catch (exception) {
         this.setState({ loginError: exception.message });
       }
-
     }
   };
 
@@ -160,7 +159,7 @@ export default class Navbar extends React.Component {
                         className="form-control" id="signup-confirm-password-input" />
                     </div>
                   </div>
-                  <button type="submit" onClick={this.handleSignup()} className="btn btn-outline-dark">
+                  <button type="submit" onClick={this.handleSignup} className="btn btn-outline-dark">
                     <i className="fas fa-user-plus"></i> Sign up</button>
                   {this.state.signupError ? <p>{this.state.signupError}</p> : null}
                 </div>

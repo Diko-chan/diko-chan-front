@@ -11,12 +11,10 @@ export default class Commission extends React.Component {
 
         this.state={
             commissionError: null,
-            com_name: '',
-            com_age: '',
-            com_gender: '',
-            com_details: '',
-
-
+            name: '',
+            age: '',
+            gender: '',
+            details: '',
         };
     }
 
@@ -47,27 +45,27 @@ export default class Commission extends React.Component {
             <div className="card between commission-container">
                 <div className="mb-3 input-group col-auto">
                     <span className="input-group-text" id="addon-wrapping" required>Name</span>
-                        <input className="form-control" type="text"  aria-label="default input example" /> 
+                        <input className="form-control" type="text"  aria-label="default input example" onChange={(value)=>{this.com_name = value}}/> 
                 </div>
                 <div className="row">
                     <div className="mb-3 input-group flex-nowrap col">
                     <span className="input-group-text" id="addon-wrapping">Age</span>
-                        <input className="form-control" type="number" placeholder="just numbers" aria-label="default input example" />   
+                        <input className="form-control" type="number" aria-label="default input example" onChange={(value)=>{this.com_age = Number(value)}} />   
                     </div>
                     <div className="mb-3 input-group flex-nowrap col">
                         <span className="input-group-text" id="addon-wrapping" required>Gender</span>        
-                            <select className="form-select" aria-label="Default select example">               
-                            <option selected>Unknown</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
-                            <option value="3">Other, Please describe in the details</option>
+                        <select className="form-select" aria-label="Default select example" onChange={(value)=>{this.com_gender = value}}>               
+                            <option value="unknown">Unknown</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
                         </select>
                     </div>
                  </div>
                 
                 <div className="mb-3 input-group flex-nowrap">
                     <span className="input-group-text" id="addon-wrapping">Details</span>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" required></textarea>
+                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" onChange={(value)=>{this.com_details = value}}></textarea>
                 </div>
                 {/* <div className="input-group mb-3">
                     <input type="file" className="form-control" id="inputGroupFile02" required />
