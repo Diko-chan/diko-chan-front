@@ -14,6 +14,8 @@ export class ApiProvider extends Component {
             apiToken: '',
             networkError: false,
             login: this.login,
+            logout: this.handleLogout,
+            signup: this.signup,
         };
     } 
 
@@ -44,7 +46,7 @@ export class ApiProvider extends Component {
     }
 
     login = async (email, password) => {
-        console.log(email, password);
+        console.log(email);
         const response = await this.fetchApi('login', 'POST', { email, password });
         const data = await response.json();
 
@@ -56,12 +58,46 @@ export class ApiProvider extends Component {
             window.localStorage.setItem('authToken', data.data.token);
             this.setState({apiToken: data.data.token});
 
-            console.log("Sikeres bejelentkezés!");
+            console.log("Successful login!");
             console.log("userType: " + data.data.userType);
             console.log("user Token: " + this.state.apiToken);
+            window.location.href='';
+        }
+        this.forceUpdate();
+    }
+
+
+    signup = async (name, email, password) => {
+        console.log(name, email, password);
+        const response = await this.fetchApi('register', 'POST', { name, email, password });
+        console.log(response);
+
+        if (response.status>299) {
+            throw new Error(response.message);
+        } else {
+            const data = await response.json();
+            window.localStorage.setItem('authToken', data.data.token);
+            this.setState({apiToken: data.data.token});
+
+            console.log("successful register!");
+            console.log("userType: " + data.data.userType);
+            console.log("user Token: " + this.state.apiToken);
+            this.forceUpdate();
+            window.location.href ="";
         }
     }
 
+    commission = async (com_name, com_age, com_gender, com_details) => {
+        console.log(com_name, com_age, com_gender, com_details);
+        const response = await this.fetchApi('commissions', 'POST', {com_name, com_age, com_gender, com_details});
+        console.log(response);
+
+    }
+
+    handleLogout = () => {
+        this.setState({apiToken: null});
+        window.localStorage.clear(); 
+      };
 
     render() {
         return <ApiContext.Provider value={this.state}>

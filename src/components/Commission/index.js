@@ -11,10 +11,10 @@ export default class Commission extends React.Component {
 
         this.state={
             commissionError: null,
-            name: '',
-            age: '',
-            gender: '',
-            details: '',
+            com_name: '',
+            com_age: '',
+            com_gender: '',
+            com_details: '',
         };
     }
 
@@ -22,6 +22,29 @@ export default class Commission extends React.Component {
     handleComAgeChange = (event) => { this.setState({ com_age: event.currentTarget.value }) };
     handleComGenderChange = (event) => { this.setState({ com_gender: event.currentTarget.value }) };
     handleComDetailsChange = (event) => { this.setState({ com_details: event.currentTarget.value }) };
+
+    handleCommission = async () => {
+        const { com_name, com_age, com_gender, com_details } = this.state;
+        /*if (com_name.trim() != '' && 
+            com_age.trim() != '' &&
+            com_gender.trim() != '' &&
+            com_details.trim() != '')
+            {*/
+            try{
+                await this.context.commission(com_name, com_age, com_gender, com_details);
+                this.setState({
+                    commissionError: null,
+                    com_name: '',
+                    com_age: '',
+                    com_gender: '',
+                    com_details: '',
+                    })
+                }
+            catch (exception) {
+                this.setState({ commissionError: exception.message });
+                }
+            //}
+        };
 
     render() {
         return <div className="card-group">
@@ -45,16 +68,16 @@ export default class Commission extends React.Component {
             <div className="card between commission-container">
                 <div className="mb-3 input-group col-auto">
                     <span className="input-group-text" id="addon-wrapping" required>Name</span>
-                        <input className="form-control" type="text"  aria-label="default input example" onChange={(value)=>{this.com_name = value}}/> 
+                        <input className="form-control" type="text"  aria-label="default input example" onInput={this.handleComNameChange}/> 
                 </div>
                 <div className="row">
                     <div className="mb-3 input-group flex-nowrap col">
                     <span className="input-group-text" id="addon-wrapping">Age</span>
-                        <input className="form-control" type="number" aria-label="default input example" onChange={(value)=>{this.com_age = Number(value)}} />   
+                        <input className="form-control" type="number" aria-label="default input example" onInput={this.handleComAgeChange} />   
                     </div>
                     <div className="mb-3 input-group flex-nowrap col">
                         <span className="input-group-text" id="addon-wrapping" required>Gender</span>        
-                        <select className="form-select" aria-label="Default select example" onChange={(value)=>{this.com_gender = value}}>               
+                        <select className="form-select" aria-label="Default select example" onInput={this.handleComGenderChange}>               
                             <option value="unknown">Unknown</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -65,7 +88,7 @@ export default class Commission extends React.Component {
                 
                 <div className="mb-3 input-group flex-nowrap">
                     <span className="input-group-text" id="addon-wrapping">Details</span>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" onChange={(value)=>{this.com_details = value}}></textarea>
+                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" onInput={this.handleComDetailsChange}></textarea>
                 </div>
                 {/* <div className="input-group mb-3">
                     <input type="file" className="form-control" id="inputGroupFile02" required />
@@ -81,7 +104,8 @@ export default class Commission extends React.Component {
                     </div>
                 </div>
                 <div className="col-12">
-                    <button className="btn btn-secondary" type="submit" >Submit Commission</button>
+                    <button className="btn btn-secondary" type="submit" onClick={this.handleCommission}
+                     >Submit Commission</button>
                 </div>
             </div>
             </LoginRequired>

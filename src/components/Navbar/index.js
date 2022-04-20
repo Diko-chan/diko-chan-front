@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ApiContext } from "../../api/api";
 import { Link } from 'react-router-dom';
+import { Modal } from 'bootstrap';
 
 import './style.scss';
 
@@ -25,12 +26,6 @@ export default class Navbar extends React.Component {
       userData: null,
     };
   }
-
-  handleLogout = () => {
-    this.context.apiToken = null;
-    window.localStorage.clear();
-    this.forceUpdate(); // force update to rerender after context changes due to lack of change detection 
-  };
 
   handleEmailChange = (event) => { this.setState({ email: event.currentTarget.value }) };
   handleNameChange = (event) => { this.setState({ name: event.currentTarget.value }) };
@@ -79,10 +74,16 @@ export default class Navbar extends React.Component {
           password: '',
           //userData,
         })
-        this.forceUpdate();
+        //this.forceUpdate();
+        const myModalEl = document.getElementById('loginmodal');
+        const modal = Modal.getInstance(myModalEl);
+        //modal.hide();
+        //modal.dispose();
+
       } catch (exception) {
         this.setState({ loginError: exception.message });
       }
+
     }
   };
 
@@ -121,7 +122,7 @@ export default class Navbar extends React.Component {
 
         <LoginRequired>
           <button className='btn btn-outline-light btn-floating'
-            onClick={this.handleLogout}>
+            onClick={this.context.logout}>
             <i className="fas fa-sign-in-alt me-2"></i>Logout
           </button>
         </LoginRequired>
