@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import Welcome from './components/Welcome';
 import Artworks from './components/Artworks'
 import Commission from './components/Commission';
-import Commissiontables from './components/CommissionTables';
+import CommissionTables from './components/CommissionTables';
 import Commission_notloggedin from './components/CommissionNotLoggedin';
 import Contactme from './components/Contactme';
 
@@ -61,7 +61,7 @@ class App extends React.Component {
                 <Cards />
                 
                   <Commission />
-                {/* <Commissiontables /> */}
+                  <CommissionTables />
                 
                 <Footer />
                 </>

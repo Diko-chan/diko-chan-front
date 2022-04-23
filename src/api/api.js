@@ -3,11 +3,12 @@ import { Component, createContext } from "react";
 export const ApiContext = createContext({
     apiToken: null,
     networkError: false,
-    login: (email, password) => {},
-    
+    login: (email, password) => { },
+    getCommission: () => { },
+
 });
 
-export class ApiProvider extends Component {   
+export class ApiProvider extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,8 +17,10 @@ export class ApiProvider extends Component {
             login: this.login,
             logout: this.handleLogout,
             signup: this.signup,
+            commission: this.commission,
+            getCommission: this.getCommission,
         };
-    } 
+    }
 
     componentDidMount() {
         const token = window.localStorage.getItem('authToken');
@@ -38,9 +41,11 @@ export class ApiProvider extends Component {
                 },
                 body: data ? JSON.stringify(data) : null,
             });
+            //console.debug(this.state.apiToken);
+
             this.setState({ networkError: false });
             return response;
-        } catch(exception) {
+        } catch (exception) {
             this.setState({ networkError: true });
         }
     }
@@ -56,12 +61,12 @@ export class ApiProvider extends Component {
             throw new Error(data.message);
         } else {
             window.localStorage.setItem('authToken', data.data.token);
-            this.setState({apiToken: data.data.token});
+            this.setState({ apiToken: data.data.token });
 
             console.log("Successful login!");
             console.log("userType: " + data.data.userType);
             console.log("user Token: " + this.state.apiToken);
-            window.location.href='';
+            //window.location.href='';
         }
         this.forceUpdate();
     }
@@ -72,32 +77,62 @@ export class ApiProvider extends Component {
         const response = await this.fetchApi('register', 'POST', { name, email, password });
         console.log(response);
 
-        if (response.status>299) {
+        if (response.status > 299) {
             throw new Error(response.message);
         } else {
             const data = await response.json();
             window.localStorage.setItem('authToken', data.data.token);
-            this.setState({apiToken: data.data.token});
+            this.setState({ apiToken: data.data.token });
 
             console.log("successful register!");
             console.log("userType: " + data.data.userType);
             console.log("user Token: " + this.state.apiToken);
             this.forceUpdate();
-            window.location.href ="";
+            // window.location.href ="";
         }
     }
 
+
     commission = async (com_name, com_age, com_gender, com_details) => {
         console.log(com_name, com_age, com_gender, com_details);
-        const response = await this.fetchApi('commissions', 'POST', {com_name, com_age, com_gender, com_details});
-        console.log(response);
 
+        const response = await this.fetchApi('commissions', 'POST', { com_name, com_age, com_gender, com_details });
+        console.log(response);
+    }
+
+
+    getCommission = async () => {
+        //const response = await this.fetchApi('commission');
+        const response = await fetch(`${this.props.serverAddress}/api/commission`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.state.apiToken}`,
+            },
+        });
+
+
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+
+        const commissionList = await response.json();
+
+        if (response.message) {
+            this.setState({
+                networkError: false,
+            })
+        }
+
+        console.debug(commissionList);
+        return commissionList;
     }
 
     handleLogout = () => {
-        this.setState({apiToken: null});
-        window.localStorage.clear(); 
-      };
+        this.setState({ apiToken: null });
+        window.localStorage.clear();
+    };
 
     render() {
         return <ApiContext.Provider value={this.state}>

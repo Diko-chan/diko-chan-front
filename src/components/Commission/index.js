@@ -1,10 +1,13 @@
 import React from 'react';
 import Form  from 'react';
+import { ApiContext } from "../../api/api";
 import LoginRequired from '../../api/LoginRequired';
 
 import './style.scss'; 
 
 export default class Commission extends React.Component {
+
+    static contextType = ApiContext;
 
     constructor(props) {
         super(props);
@@ -30,6 +33,7 @@ export default class Commission extends React.Component {
             com_gender.trim() != '' &&
             com_details.trim() != '')
             {*/
+            
             try{
                 await this.context.commission(com_name, com_age, com_gender, com_details);
                 this.setState({
@@ -47,6 +51,8 @@ export default class Commission extends React.Component {
         };
 
     render() {
+        const { com_name, com_age, com_gender, com_details } = this.state;
+
         return <div className="card-group">
             <div className="card between rules-container">
                 <div className="card-body">
@@ -68,16 +74,16 @@ export default class Commission extends React.Component {
             <div className="card between commission-container">
                 <div className="mb-3 input-group col-auto">
                     <span className="input-group-text" id="addon-wrapping" required>Name</span>
-                        <input className="form-control" type="text"  aria-label="default input example" onInput={this.handleComNameChange}/> 
+                        <input className="form-control" type="text"  aria-label="default input example" value={com_name} onInput={this.handleComNameChange}/> 
                 </div>
                 <div className="row">
                     <div className="mb-3 input-group flex-nowrap col">
                     <span className="input-group-text" id="addon-wrapping">Age</span>
-                        <input className="form-control" type="number" aria-label="default input example" onInput={this.handleComAgeChange} />   
+                        <input className="form-control" type="number" aria-label="default input example" value={com_age} onInput={this.handleComAgeChange} />   
                     </div>
                     <div className="mb-3 input-group flex-nowrap col">
                         <span className="input-group-text" id="addon-wrapping" required>Gender</span>        
-                        <select className="form-select" aria-label="Default select example" onInput={this.handleComGenderChange}>               
+                        <select className="form-select" aria-label="Default select example" value={com_gender} onInput={this.handleComGenderChange}>               
                             <option value="unknown">Unknown</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -88,7 +94,7 @@ export default class Commission extends React.Component {
                 
                 <div className="mb-3 input-group flex-nowrap">
                     <span className="input-group-text" id="addon-wrapping">Details</span>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" onInput={this.handleComDetailsChange}></textarea>
+                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" value={com_details} onInput={this.handleComDetailsChange}></textarea>
                 </div>
                 {/* <div className="input-group mb-3">
                     <input type="file" className="form-control" id="inputGroupFile02" required />
@@ -106,6 +112,7 @@ export default class Commission extends React.Component {
                 <div className="col-12">
                     <button className="btn btn-secondary" type="submit" onClick={this.handleCommission}
                      >Submit Commission</button>
+                     {this.state.commissionError ? <p>{this.state.commissionError}</p> : null}
                 </div>
             </div>
             </LoginRequired>
