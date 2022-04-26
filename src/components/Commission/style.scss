@@ -1,20 +1,24 @@
 .commission-container {
-    margin-right: 15.3%;
+  
     padding-top: 5%;
     padding-bottom: 5%;
 }
 
 .rules-container {
-    margin-left: 15.3%;
+ 
     padding-top: 3%;
     padding-bottom: 5%;
-    text-align: center;
+    text-align: justify !important;
     color: rgb(71, 91, 112) !important;
+    h1 {
+        text-align: center;
+    }
 }
 
 .between {
     background-color: rgb(255, 243, 225) !important;
 }
+
 
 .input-group-text {
     background-color: rgb(71, 91, 112) !important;

@@ -17,6 +17,7 @@ export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      toggleNav: false, 
       loginError: null,
       signupError: null,
       email: '',
@@ -87,11 +88,29 @@ export default class Navbar extends React.Component {
     }
   };
 
+  toggleNav = () => {
+    const {toggleNav} = this.state;
+    //state változtasa true/false
+    this.setState({
+      toggleNav: !toggleNav,
+    });
+  };
+
   render() {
+    let navClass = "collapse navbar-collapse";
+    //statetől függően show osztály hozzáadása
+    const {toggleNav} = this.state;
+    if(toggleNav) { 
+      navClass += " show"
+     }
+
     return <nav className="navbar navbar-expand-lg navbar-light main-navbar">
-      <div className="container-fluid">
+      <div className="container-fluid"> 
+        <button className="navbar-toggler" type="button" onClick={this.toggleNav} aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
         <p className="navbar-brand">DIKO-CHAN</p>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className={navClass} id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/">HOME</Link>

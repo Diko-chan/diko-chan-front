@@ -59,10 +59,10 @@ class App extends React.Component {
                 <>
                 <Navbar />
                 <Cards />
-                
                   <Commission />
-                  <CommissionTables />
-                
+                  <LoginRequired>
+                    <CommissionTables />
+                  </LoginRequired>
                 <Footer />
                 </>
               } />

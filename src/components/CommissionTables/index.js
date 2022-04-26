@@ -49,7 +49,7 @@ export default class Commission extends React.Component {
 
 
     render() {
-        return <div className="card-group">
+        return <div className="card-group container">
             <div className="card between rules-container">
                 <div className="card-body">
                     <h1>My Commissions</h1>
@@ -60,7 +60,6 @@ export default class Commission extends React.Component {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Age</th>
                             <th scope="col">Gender</th>
@@ -72,8 +71,7 @@ export default class Commission extends React.Component {
                         {this.state.commissionData.map((data, index) => {
                             return (
                                 
-                                <tr key={index}>
-                                    <td>{data.id}</td>
+                                <tr key={index}>                                   
                                     <td>{data.comName}</td>
                                     <td>{data.comAge}</td>
                                     <td>{data.comGender}</td>

@@ -15,10 +15,11 @@ export default class Welcome extends React.Component{
 
                     <p>My name is Diko-chan, I'm a freelance digital illustrator who also likes to play a lot.<br/>
                         Also, I'm streaming on Twitch as a Vtuber, mostly my art stuff, sometimes games.<br/>
-                        My style is fluid, depends the mood and the type I'm drawing or the music I listen.<br/><br/>
+                        My Vtuber is a confy, Fox type kemonomimi<br/>
+                        If you want to see me draw or just talk with me, feel free to hop in.<br/>
+                        <br/>
 
-                        I'm graduated as a Representative Artist, and studying webdevelopment.<br/>
-                        I'm making this page as a final product for school and for my own reklam.</p>
+                        I'm graduated as a Representative Artist, and studying webdevelopment.<br/></p>
                 </div>
             </div>
     }

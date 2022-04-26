@@ -24,7 +24,9 @@ export default class Contactme extends React.Component {
                 My style is fluid, depends the mood and the type I'm drawing or the music I listen.<br/><br/>
 
                 I'm graduated as a Representative Artist, and studying webdevelopment.<br/>
-                I'm making this page as a final product for school and for my own reklam.</p>
+                You can contact me any time via email dikochanart@gmail.com <br/>
+
+                I'm making this page as a graduation project for school and for my own reklam.</p>
         </div>
     </div>
     }
