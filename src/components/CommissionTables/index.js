@@ -1,5 +1,4 @@
 import React from 'react';
-import Form from 'react';
 import { ApiContext } from "../../api/api";
 
 import './style.scss';
@@ -18,7 +17,6 @@ export default class Commission extends React.Component {
 
 
     commissionList(commissions) {
-        console.debug(this.context.apiToken);
         console.debug(commissions);
 
         const commissionData = commissions.data.map(elem => {
@@ -35,13 +33,10 @@ export default class Commission extends React.Component {
         this.setState({
             commissionData: commissionData,
         })
-
-        //console.debug(this.state.commissionData);
     }
 
 
     componentDidMount() {
-        console.debug(this.context.apiToken);
         this.context.getCommission().then(commissions => {
             this.commissionList(commissions);
         })

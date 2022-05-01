@@ -41,7 +41,6 @@ export class ApiProvider extends Component {
                 },
                 body: data ? JSON.stringify(data) : null,
             });
-            //console.debug(this.state.apiToken);
 
             this.setState({ networkError: false });
             return response;
@@ -64,16 +63,12 @@ export class ApiProvider extends Component {
             this.setState({ apiToken: data.data.token });
 
             console.log("Successful login!");
-            console.log("userType: " + data.data.userType);
-            console.log("user Token: " + this.state.apiToken);
-            //window.location.href='';
         }
         this.forceUpdate();
     }
 
 
     signup = async (name, email, password) => {
-        console.log(name, email, password);
         const response = await this.fetchApi('register', 'POST', { name, email, password });
         console.log(response);
 
@@ -85,10 +80,6 @@ export class ApiProvider extends Component {
             this.setState({ apiToken: data.data.token });
 
             console.log("successful register!");
-            console.log("userType: " + data.data.userType);
-            console.log("user Token: " + this.state.apiToken);
-            this.forceUpdate();
-            // window.location.href ="";
         }
     }
 

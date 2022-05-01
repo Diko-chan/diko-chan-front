@@ -5,12 +5,6 @@ import './style.scss';
 
 export default class Contactme extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state={};
-    };
-
     render() {
         return <div className="card-group">
         <div className="card between image-container ">
@@ -30,5 +24,4 @@ export default class Contactme extends React.Component {
         </div>
     </div>
     }
-
 }

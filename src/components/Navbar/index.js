@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ApiContext } from "../../api/api";
 import { Link } from 'react-router-dom';
-import { Modal } from 'bootstrap';
 
 import './style.scss';
 
 import Guest from '../../api/Guest';
 import LoginRequired from '../../api/LoginRequired';
-
-
 
 export default class Navbar extends React.Component {
 
@@ -17,7 +14,7 @@ export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleNav: false, 
+      toggleNav: false,
       loginError: null,
       signupError: null,
       email: '',
@@ -39,7 +36,7 @@ export default class Navbar extends React.Component {
       email.trim() !== '' &&
       password.trim() !== '' &&
       confPassword.trim() !== '') {
-      if (password != confPassword) {
+      if (password !== confPassword) {
         alert("passwords doesn't match")
         return false;
       }
@@ -52,7 +49,6 @@ export default class Navbar extends React.Component {
             email: '',
             password: '',
           })
-
         } catch (exception) {
           this.setState({ signupError: exception.message });
         }
@@ -68,44 +64,40 @@ export default class Navbar extends React.Component {
     if (email.trim() !== '' && password.trim() !== '') {
       try {
         await this.context.login(email, password);
-        //const userData = await this.context.getUserData();
+
         this.setState({
           loginError: null,
           email: '',
           password: '',
-          //userData,
         })
-        //this.forceUpdate();
-        const myModalEl = document.getElementById('loginmodal');
-        const modal = Modal.getInstance(myModalEl);
-        //modal.hide();
-        //modal.dispose();
 
       } catch (exception) {
         this.setState({ loginError: exception.message });
       }
-
     }
   };
 
+
   toggleNav = () => {
-    const {toggleNav} = this.state;
-    //state változtasa true/false
+    const { toggleNav } = this.state;
+
     this.setState({
       toggleNav: !toggleNav,
     });
   };
 
+
   render() {
     let navClass = "collapse navbar-collapse";
-    //statetől függően show osztály hozzáadása
-    const {toggleNav} = this.state;
-    if(toggleNav) { 
+
+    const { toggleNav } = this.state;
+
+    if (toggleNav) {
       navClass += " show"
-     }
+    }
 
     return <nav className="navbar navbar-expand-lg navbar-light main-navbar">
-      <div className="container-fluid"> 
+      <div className="container-fluid">
         <button className="navbar-toggler" type="button" onClick={this.toggleNav} aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -130,8 +122,7 @@ export default class Navbar extends React.Component {
 
         <Guest>
           {/* Sign up, Login buttons */}
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossOrigin="anonymous" />
-          <ul className="nav buttons-navbar-nav navbar-right">
+                <ul className="nav buttons-navbar-nav navbar-right">
             <a className="btn btn-outline-light btn-floating m-1" data-bs-toggle="modal" data-bs-target="#signupmodal" role="button">
               <i className="fas fa-user-plus"></i></a>
             <a className="btn btn-outline-light btn-floating m-1" data-bs-toggle="modal" data-bs-target="#loginmodal" role="button">
@@ -147,7 +138,6 @@ export default class Navbar extends React.Component {
         </LoginRequired>
 
 
-
         {/* Sign up modal */}
         <div className="modal fade" id="signupmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div className="modal-dialog">
@@ -158,31 +148,33 @@ export default class Navbar extends React.Component {
               </div>
 
               <div className="modal-body">
-                <div className="mb-2">
-                  <label htmlFor="signup-name-input" className="form-label">Nick name</label>
-                  <input type="text" onInput={this.handleNameChange} className="form-control" />
-                  <div />
+                <form>
                   <div className="mb-2">
-                    <label htmlFor="signup-email-input" className="form-label">Email address</label>
-                    <input type="email" onInput={this.handleEmailChange}
-                      className="form-control" id="signup-email-input" aria-describedby="emailHelp" />
-                  </div>
-                  <div className="row">
-                    <div className="mb-2 col">
-                      <label htmlFor="signup-password-input" className="form-label">Password</label>
-                      <input type="password" onInput={this.handlePasswordChange}
-                        className="form-control" id="signup-password-input" />
+                    <label htmlFor="signup-name-input" className="form-label">Nick name</label>
+                    <input type="text" onInput={this.handleNameChange} className="form-control" />
+                    <div />
+                    <div className="mb-2">
+                      <label htmlFor="signup-email-input" className="form-label">Email address</label>
+                      <input type="email" onInput={this.handleEmailChange}
+                        className="form-control" id="signup-email-input" aria-describedby="emailHelp" />
                     </div>
-                    <div className="mb-2 col">
-                      <label htmlFor="signup-confirm-password-input" className="form-label">Confirm Password</label>
-                      <input type="password" onInput={this.handleConfPasswordChange}
-                        className="form-control" id="signup-confirm-password-input" />
+                    <div className="row">
+                      <div className="mb-2 col">
+                        <label htmlFor="signup-password-input" className="form-label">Password</label>
+                        <input type="password" autoComplete='off' onInput={this.handlePasswordChange}
+                          className="form-control" id="signup-password-input" />
+                      </div>
+                      <div className="mb-2 col">
+                        <label htmlFor="signup-confirm-password-input" className="form-label">Confirm Password</label>
+                        <input type="password" autoComplete='off' onInput={this.handleConfPasswordChange}
+                          className="form-control" id="signup-confirm-password-input" />
+                      </div>
                     </div>
+                    <button type="button" onClick={this.handleSignup} className="btn btn-outline-dark">
+                      <i className="fas fa-user-plus"></i> Sign up</button>
+                    {this.state.signupError ? <p>{this.state.signupError}</p> : null}
                   </div>
-                  <button type="submit" onClick={this.handleSignup} className="btn btn-outline-dark">
-                    <i className="fas fa-user-plus"></i> Sign up</button>
-                  {this.state.signupError ? <p>{this.state.signupError}</p> : null}
-                </div>
+                </form>
               </div>
 
               <div className="modal-footer">
@@ -202,19 +194,21 @@ export default class Navbar extends React.Component {
               </div>
 
               <div className="modal-body">
-                <div className="mb-3">
-                  <label htmlFor="login-email-input" className="form-label">Email address</label>
-                  <input type="email" onInput={this.handleEmailChange}
-                    className="form-control" id="login-email-input" aria-describedby="emailHelp" />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="login-password-input" className="form-label">Password</label>
-                  <input type="password" onInput={this.handlePasswordChange}
-                    className="form-control" id="login-password-input" />
-                </div>
-                <button type="submit" onClick={this.handleLogin} className="btn btn-outline-dark">
-                  <i className="fas fa-sign-in-alt"></i> Login</button>
-                {this.state.loginError ? <p>{this.state.loginError}</p> : null}
+                <form>
+                  <div className="mb-3">
+                    <label htmlFor="login-email-input" className="form-label">Email address</label>
+                    <input type="email" onInput={this.handleEmailChange}
+                      className="form-control" id="login-email-input" aria-describedby="emailHelp" />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="login-password-input" className="form-label">Password</label>
+                    <input type="password" autoComplete='off' onInput={this.handlePasswordChange}
+                      className="form-control" id="login-password-input" />
+                  </div>
+                  <button type="button" onClick={this.handleLogin} className="btn btn-outline-dark">
+                    <i className="fas fa-sign-in-alt"></i> Login</button>
+                  {this.state.loginError ? <p>{this.state.loginError}</p> : null}
+                </form>
               </div>
 
               <div className="modal-footer">
@@ -226,5 +220,4 @@ export default class Navbar extends React.Component {
       </div>
     </nav>
   }
-
 }
